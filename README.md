@@ -1,1 +1,3 @@
-# 2FCJ3-22259
+# Ads Manager
+
+this is a system where users can post Ads and also comment on other people's Ads.
