@@ -38,44 +38,25 @@ class LoginSerializer(serializers.Serializer):
         email = data.get('email').lower()
         password = data.get('password')
 
-        # if email and password:
-        #     user = authenticate(request=self.context.get('request'), email=email, password=password)
+        if email and password:
+            user = authenticate(request=self.context.get('request'), email=email, password=password)
 
-        #     if user is None:
-        #         raise serializers.ValidationError(_('Invalid login credentials.'))
+            if user is None:
+                raise serializers.ValidationError(_('Invalid login credentials.'))
 
-        #     if not user.is_active:
-        #         raise serializers.ValidationError(_('User account is disabled.'))
+            if not user.is_active:
+                raise serializers.ValidationError(_('User account is disabled.'))
 
-        # else:
-        #     raise serializers.ValidationError(_('Must include "email" and "password".'))
+        else:
+            raise serializers.ValidationError(_('Must include "email" and "password".'))
 
-        # data['user'] = user
-        # return data
-        password = data.get('password')
-
-        user = authenticate(email=email, password=password)
-        if user is None:
-            raise serializers.ValidationError('Invalid email or password.')
-
-        return {
-            'email': email,
-            'password': password,
-            'user': user
-        }
+        data['user'] = user
+        return data
 
     def create(self, validated_data):
         user = validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         return token
-    
-    def save(self, **kwargs):
-        request = self.context.get('request')
-        if request and request.user and hasattr(request.user, 'auth_token'):
-            token = request.user.auth_token
-            token.delete() 
-        else:
-            raise serializers.ValidationError('User not authenticated or no token found.')
 
 class LogoutSerializer(serializers.Serializer):
     pass
