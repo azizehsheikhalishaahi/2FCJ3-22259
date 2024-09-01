@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'drf_yasg', # OpenAPI documentation
 
     # Custom apps
-    
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +141,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Specifies the custom user model to be used for authentication and user-related functionality.
+# This allows for extending or replacing the default Django User model with a custom model
+# (e.g., CustomUser in the 'users' app) to include additional fields or behaviors.
+AUTH_USER_MODEL = "users.CustomUser"
