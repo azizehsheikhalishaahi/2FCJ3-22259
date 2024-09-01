@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
     'drf_yasg', # OpenAPI documentation
+    'rest_framework.authtoken',
 
     # Custom apps
     'users',
