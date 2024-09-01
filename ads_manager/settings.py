@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+
+# Use environment variables 
+DB_NAME = config('DATABASE_NAME')
+DB_USER = config('DATABASE_USER')
+DB_PASSWORD = config('DATABASE_PASSWORD')
+DB_HOST = config('DATABASE_HOST')
+DB_PORT = config('DATABASE_PORT')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,9 +82,13 @@ WSGI_APPLICATION = "ads_manager.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': config(DB_HOST, default='localhost'),
+        'PORT': config(DB_PORT, default='5432'),
     }
 }
 
