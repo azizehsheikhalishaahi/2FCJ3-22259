@@ -19,4 +19,5 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/users/', include('users.urls')),  # Include user-related API URLs
     path('ads/', include('ads.urls')),  # Include ads-related API URLs
+    path('comments/', include('comments.urls')), # Include comment-related API URLs
 ]

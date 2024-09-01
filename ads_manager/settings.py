@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # Custom apps
     'users',
     'ads',
+    'comments',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # This allows for extending or replacing the default Django User model with a custom model
 # (e.g., CustomUser in the 'users' app) to include additional fields or behaviors.
 AUTH_USER_MODEL = "users.CustomUser"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
