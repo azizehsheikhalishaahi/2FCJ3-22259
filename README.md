@@ -77,6 +77,7 @@ DATABASE_PORT=5432
 
 ## API Documentation
 
+This project uses OpenAPI for API documentation. You can view the documentation by navigating to http://127.0.0.1:8000/swagger/ .
 
 ## Testing
 
