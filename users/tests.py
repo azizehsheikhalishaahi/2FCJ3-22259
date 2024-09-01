@@ -62,7 +62,7 @@ class UniqueEmailTests(TestCase):
         CustomUser.objects.create_user(email=email, password='password1')
         with self.assertRaises(ValidationError):
             user = CustomUser(email=email)
-            user.full_clean()  # This method checks for model validation errors before saving
+            user.full_clean()  
 
 class UserPermissionsTests(TestCase):
     """
