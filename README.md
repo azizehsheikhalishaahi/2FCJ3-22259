@@ -51,7 +51,7 @@ this is a system where users can post Ads and also comment on other people's Ads
 
    ```bash
    python -m venv env
-   source env/bin/activate
+   source env/bin/activate  # On Windows use `env\Scripts\activate`
    ```
 
 3. **Install the dependencies:**
@@ -66,38 +66,38 @@ this is a system where users can post Ads and also comment on other people's Ads
 
    ```bash
    psql
-   CREATE DATABASE yourdbname;
+    CREATE DATABASE myprojectdb;
+    CREATE USER myprojectuser WITH PASSWORD `password`;
+    GRANT ALL PRIVILEGES ON DATABASE myprojectdb TO myprojectuser;
    ```
+5. **Configuration**
+   To configure environment-specific settings and add database , create a `.env` file in the project root. Here’s an example `.env` file:
 
-5. **Apply migrations:**
+   ```bash
+   DATABASE_NAME=dbname
+   DATABASE_USER=dbuser
+   DATABASE_PASSWORD=dbpass
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   ```
+   
+6. **Apply migrations:**
 
    ```bash
    python manage.py migrate
    ```
 
-6. **Create a superuser:**
+7. **Create a superuser:**
 
    ```bash
    python manage.py createsuperuser
    ```
 
-7. **Run the development server:**
+8. **Run the development server:**
 
    ```bash
    python manage.py runserver
    ```
-
-## Configuration
-
-To configure environment-specific settings, create a `.env` file in the project root. Here’s an example `.env` file:
-
-```bash
-DATABASE_NAME=dbname
-DATABASE_USER=dbuser
-DATABASE_PASSWORD=dbpass
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-```
 
 ## Usage
 
@@ -114,5 +114,3 @@ To run tests, use the following command:
 ```bash
 python manage.py test
 ```
-
-## Contact
