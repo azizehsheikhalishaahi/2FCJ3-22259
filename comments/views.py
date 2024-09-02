@@ -18,6 +18,7 @@ class CommentCreateView(generics.CreateAPIView):
 
 class CommentListView(generics.ListAPIView):
     serializer_class = CommentSerializer
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         ad = self.kwargs['ad_pk']
